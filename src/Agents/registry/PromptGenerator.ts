@@ -91,9 +91,10 @@ Respond ONLY with:
 "1" if valid
 "0" if invalid
 DO NOT GENERATE COMMENTS, INSTRUCTIONS, ADDITIONAL EXPLANATIONS, JUST 0 OR 1
-here is the system "{{CONTEXT}}" to help make a decision
+here is the  to help make a decision
 
-
+REMEMBER: Yes or No can be valid depending on the context, use the context to decide
+system "{{CONTEXT}}"
 `;
 
   }
