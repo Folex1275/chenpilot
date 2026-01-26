@@ -11,9 +11,9 @@ export const mockStellarSdk: any = {
       sign: jest.fn().mockReturnValue(Buffer.from('mock_signature')),
     })),
   },
-  // Nesting Server inside Horizon to match SDK v13+
   Horizon: {
     Server: jest.fn().mockImplementation(() => ({
+      // Use "as any" before .mockResolvedValue to stop the 'never' error
       loadAccount: (jest.fn() as any).mockResolvedValue({
         id: 'GD77MOCKPUBLICKEY1234567890',
         balances: [
@@ -35,11 +35,11 @@ export const mockStellarSdk: any = {
       }))
     }))
   },
-  Asset: jest.fn().mockImplementation((code, issuer) => ({
-    code,
-    issuer,
-    isNative: () => !code
-  })),
+  Asset: function(this: any, code: string, issuer: string) {
+    this.code = code;
+    this.issuer = issuer;
+    this.isNative = () => !code;
+  },
   TransactionBuilder: jest.fn().mockImplementation(() => ({
     addOperation: jest.fn().mockReturnThis(),
     addMemo: jest.fn().mockReturnThis(),
