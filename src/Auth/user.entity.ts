@@ -18,6 +18,15 @@ export class User {
   address!: string;
 
   @Column({ type: "varchar" })
+  pk!: string;
+
+  @Column({ type: "boolean", default: false })
+  isDeployed!: boolean;
+
+  @Column({ type: "boolean", default: false })
+  isFunded!: boolean;
+
+  @Column({ type: "varchar", default: "STRK" })
   encryptedPrivateKey!: string;
 
   @Column({ type: "varchar", default: "XLM" })
